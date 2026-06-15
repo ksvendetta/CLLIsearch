@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLLI Site Search</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #1e293b;
+      --panel-2: #273449;
+      --border: #334155;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.18);
+      --highlight: #fde047;
+      --row-hover: #243044;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    header { margin-bottom: 22px; }
+
+    h1 {
+      font-size: 1.7rem;
+      margin: 0 0 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin: 0;
+    }
+
+    .search-box {
+      position: relative;
+      margin-top: 20px;
+    }
+
+    #search {
+      width: 100%;
+      padding: 16px 46px 16px 18px;
+      font-size: 1.1rem;
+      color: var(--text);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    #search::placeholder { color: var(--muted); }
+
+    #search:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .clear-btn {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 26px;
+      border: none;
+      border-radius: 50%;
+      background: var(--panel-2);
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .clear-btn:hover { color: var(--text); background: var(--border); }
+    .clear-btn.show { display: flex; }
+
+    .status {
+      margin: 14px 2px 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      min-height: 1.1em;
+    }
+    .status strong { color: var(--accent); }
+
+    .results { margin-top: 4px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 0.9rem;
+    }
+
+    thead th {
+      text-align: left;
+      padding: 12px 14px;
+      background: var(--panel-2);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+    }
+
+    tbody td {
+      padding: 11px 14px;
+      border-top: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tbody tr:hover { background: var(--row-hover); }
+
+    td.clli {
+      font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    mark {
+      background: var(--highlight);
+      color: #1a1a1a;
+      padding: 0 1px;
+      border-radius: 2px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--muted);
+      background: var(--panel);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+    }
+    .empty .big { font-size: 2rem; margin-bottom: 8px; }
+
+    footer {
+      margin-top: 26px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    /* Responsive: stack columns into cards on narrow screens */
+    @media (max-width: 640px) {
+      thead { display: none; }
+      table { background: transparent; }
+      tbody tr {
+        display: block;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 6px 4px;
+      }
+      tbody td {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        border-top: none;
+        padding: 6px 14px;
+      }
+      tbody td::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      td.clli { text-align: right; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>CLLI Site Search</h1>
+      <p class="subtitle">Search by CLLI, address, city, ZIP, site name, or GeoLoc — any column, any case, partial matches.</p>
+      <div class="search-box">
+        <input
+          id="search"
+          type="text"
+          placeholder="Start typing to search sites…"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          aria-label="Search CLLI sites"
+        />
+        <button class="clear-btn" id="clear" title="Clear search" aria-label="Clear search">&times;</button>
+      </div>
+    </header>
+
+    <div class="status" id="status"></div>
+    <div class="results" id="results"></div>
+
+    <footer>
+      Data source: cllisites.xlsx &middot; <span id="total-count"></span> sites loaded
+    </footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    (function () {
+      const searchEl = document.getElementById("search");
+      const clearEl = document.getElementById("clear");
+      const statusEl = document.getElementById("status");
+      const resultsEl = document.getElementById("results");
+      const totalCountEl = document.getElementById("total-count");
+
+      totalCountEl.textContent = SITES.length;
+
+      // Pre-compute a lowercase haystack per site for fast, case-insensitive,
+      // any-column partial matching.
+      const INDEX = SITES.map(function (site) {
+        const blob = COLUMNS.map(function (c) { return site[c] || ""; })
+          .join("  ")
+          .toLowerCase();
+        return { site: site, blob: blob };
+      });
+
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function highlight(text, query) {
+        const safe = escapeHtml(text);
+        if (!query) return safe;
+        // Highlight every case-insensitive occurrence of the query.
+        const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        return safe.replace(new RegExp("(" + escaped + ")", "ig"), "<mark>$1</mark>");
+      }
+
+      function render(matches, query) {
+        if (matches.length === 0) {
+          resultsEl.innerHTML =
+            '<div class="empty"><div class="big">🔍</div>' +
+            "No sites match <strong>&ldquo;" + escapeHtml(query) + "&rdquo;</strong>.<br>" +
+            "Try a different CLLI, city, address, or ZIP.</div>";
+          return;
+        }
+
+        let html = "<table><thead><tr>";
+        COLUMNS.forEach(function (c) { html += "<th>" + escapeHtml(c) + "</th>"; });
+        html += "</tr></thead><tbody>";
+
+        matches.forEach(function (site) {
+          html += "<tr>";
+          COLUMNS.forEach(function (c) {
+            const cls = c === "CLLI" ? ' class="clli"' : "";
+            html +=
+              "<td" + cls + ' data-label="' + escapeHtml(c) + '">' +
+              highlight(site[c] || "", query) +
+              "</td>";
+          });
+          html += "</tr>";
+        });
+
+        html += "</tbody></table>";
+        resultsEl.innerHTML = html;
+      }
+
+      function update() {
+        const raw = searchEl.value.trim();
+        const query = raw.toLowerCase();
+        clearEl.classList.toggle("show", raw.length > 0);
+
+        if (!query) {
+          statusEl.innerHTML =
+            "Showing all <strong>" + SITES.length + "</strong> sites.";
+          render(SITES, "");
+          return;
+        }
+
+        // Multi-term AND search: every whitespace-separated term must match
+        // somewhere in the row (any column). Each term is a partial match.
+        const terms = query.split(/\s+/).filter(Boolean);
+        const matches = INDEX.filter(function (entry) {
+          return terms.every(function (t) { return entry.blob.indexOf(t) !== -1; });
+        }).map(function (entry) { return entry.site; });
+
+        statusEl.innerHTML =
+          "<strong>" + matches.length + "</strong> " +
+          (matches.length === 1 ? "site" : "sites") +
+          " matching &ldquo;" + escapeHtml(raw) + "&rdquo;";
+
+        // Highlight only single-term queries to keep marks accurate.
+        render(matches, terms.length === 1 ? raw : "");
+      }
+
+      searchEl.addEventListener("input", update);
+      clearEl.addEventListener("click", function () {
+        searchEl.value = "";
+        searchEl.focus();
+        update();
+      });
+
+      // Initial render: show everything.
+      update();
+      searchEl.focus();
+    })();
+  </script>
+</body>
+</html>
