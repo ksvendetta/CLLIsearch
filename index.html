@@ -188,6 +188,77 @@
       border-color: var(--accent);
     }
 
+    .map-bar { margin-top: 12px; }
+    .map-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .map-toggle:hover { background: var(--row-hover); border-color: var(--accent); }
+    .map-toggle svg { color: var(--accent); flex-shrink: 0; }
+
+    .map-wrap {
+      display: none;
+      height: 62vh;
+      min-height: 340px;
+      margin: 6px 0 4px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .map-wrap.show { display: block; }
+
+    .map-pop { font-size: 0.86rem; line-height: 1.45; color: #1e293b; }
+    .map-pop b { color: #0c4a6e; font-size: 0.95rem; }
+    .map-pop .dir-btn { margin-top: 8px; }
+
+    .sort-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 4px 2px 12px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .sort-bar label { white-space: nowrap; }
+    .sort-bar select {
+      flex: 0 1 auto;
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .sort-bar select:focus { outline: none; border-color: var(--accent); }
+    .sort-dir {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .sort-dir:hover { border-color: var(--accent); }
+    .sort-dir svg { color: var(--accent); flex-shrink: 0; }
+
     .status {
       margin: 14px 2px 10px;
       font-size: 0.85rem;
@@ -381,9 +452,37 @@
         <button type="button" class="pref-btn" data-pref="apple">Apple Maps</button>
         <button type="button" class="pref-btn" data-pref="google">Google Maps</button>
       </div>
+
+      <div class="map-bar">
+        <button type="button" class="map-toggle" id="mapToggle" aria-expanded="false">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+          <span id="mapToggleText">Show map of all sites</span>
+        </button>
+      </div>
     </header>
 
     <div class="status" id="status"></div>
+    <div class="map-wrap" id="mapView"></div>
+
+    <div class="sort-bar" id="sortBar">
+      <label for="sortBy">Sort by</label>
+      <select id="sortBy">
+        <option value="relevance">Relevance</option>
+        <option value="distance">Distance</option>
+        <option value="CLLI">CLLI</option>
+        <option value="Address">Address</option>
+        <option value="City">City</option>
+        <option value="State">State</option>
+        <option value="ZIP">ZIP</option>
+        <option value="Site Name">Site Name</option>
+        <option value="GeoLoc">GeoLoc</option>
+      </select>
+      <button type="button" class="sort-dir" id="sortDir" aria-label="Toggle sort direction">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l4 4H8v12H6V8H3l4-4zm9 16l-4-4h3V4h2v12h3l-4 4z"/></svg>
+        <span id="sortDirText">A–Z</span>
+      </button>
+    </div>
+
     <div class="results" id="results"></div>
 
     <footer>
@@ -404,10 +503,21 @@
       const originFormEl = document.getElementById("originForm");
       const originInputEl = document.getElementById("originInput");
       const originStatusEl = document.getElementById("originStatus");
+      const mapToggleEl = document.getElementById("mapToggle");
+      const mapToggleTextEl = document.getElementById("mapToggleText");
+      const mapViewEl = document.getElementById("mapView");
+      const sortBarEl = document.getElementById("sortBar");
+      const sortByEl = document.getElementById("sortBy");
+      const sortDirEl = document.getElementById("sortDir");
+      const sortDirTextEl = document.getElementById("sortDirText");
+
+      // Sort state. "relevance" = the smart default (distance when a location
+      // is set, else best-match for a search, else spreadsheet order).
+      var sortKey = "relevance", sortDir = "asc";
 
       // Bump APP_VERSION on every change so the badge tells you which build you
       // are actually running (handy for spotting a stale browser cache).
-      const APP_VERSION = "1.0.4";
+      const APP_VERSION = "1.0.6";
       const APP_BUILD = "2026-06-15";
       document.getElementById("versionBadge").textContent =
         "v" + APP_VERSION + " · " + APP_BUILD;
@@ -446,6 +556,9 @@
       // nearest-first.
       var originLat = null, originLon = null;
 
+      // Map view state (Leaflet is lazy-loaded the first time the map opens).
+      var mapState = { inited: false, lib: false, map: null, userMarker: null };
+
       // ZIP -> [lat, lon], built from the site data so a typed site-area ZIP
       // resolves instantly with no network call.
       var ZIP_MAP = {};
@@ -480,6 +593,10 @@
         originStatusEl.innerHTML =
           "Sorting by distance from <strong>" + escapeHtml(label) + "</strong>.";
         update();
+        if (mapState.inited) {
+          updateUserMarker();
+          if (mapViewEl.classList.contains("show")) fitMap();
+        }
       }
 
       function requestGeolocation() {
@@ -629,6 +746,29 @@
         resultsEl.innerHTML = html;
       }
 
+      // Compare two sites by a specific column (for the Sort-by dropdown).
+      function compareSites(a, b, key) {
+        if (key === "distance") {
+          var da = distanceMiles(a), db = distanceMiles(b);
+          if (da === null && db === null) return 0;
+          if (da === null) return 1;
+          if (db === null) return -1;
+          return da - db;
+        }
+        if (key === "ZIP") {
+          return (parseInt(a.ZIP, 10) || 0) - (parseInt(b.ZIP, 10) || 0);
+        }
+        var va = (a[key] || "").toLowerCase(), vb = (b[key] || "").toLowerCase();
+        return va < vb ? -1 : va > vb ? 1 : 0;
+      }
+
+      function updateSortDirLabel() {
+        var asc = sortDir === "asc";
+        if (sortKey === "distance") sortDirTextEl.textContent = asc ? "Near→Far" : "Far→Near";
+        else if (sortKey === "ZIP") sortDirTextEl.textContent = asc ? "0–9" : "9–0";
+        else sortDirTextEl.textContent = asc ? "A–Z" : "Z–A";
+      }
+
       function update() {
         const raw = searchEl.value.trim();
         const query = raw.toLowerCase();
@@ -647,35 +787,47 @@
         }
 
         const haveOrigin = originLat !== null;
-        if (haveOrigin) {
-          // Distance is the primary sort: nearest first. Ties (and any site
-          // without coordinates) fall back to best-match column priority.
-          const distOf = new Map();
-          matches.forEach(function (s) { distOf.set(s, distanceMiles(s)); });
-          matches.sort(function (a, b) {
-            var da = distOf.get(a), db = distOf.get(b);
-            if (da === null) da = Infinity;
-            if (db === null) db = Infinity;
-            if (da !== db) return da - db;
-            return rankScore(a, terms) - rankScore(b, terms);
-          });
-        } else if (terms.length) {
-          // No origin yet: order by best-match column (CLLI > Address > GeoLoc
-          // > ZIP > City > State > Site Name). Stable sort keeps ties in order.
-          const scoreOf = new Map();
-          matches.forEach(function (s) { scoreOf.set(s, rankScore(s, terms)); });
-          matches.sort(function (a, b) { return scoreOf.get(a) - scoreOf.get(b); });
+        // Distance only makes sense with a location set.
+        sortByEl.querySelector('option[value="distance"]').disabled = !haveOrigin;
+        if (sortKey === "distance" && !haveOrigin) {
+          sortKey = "relevance";
+          sortByEl.value = "relevance";
+          updateSortDirLabel();
         }
 
-        const nearest = haveOrigin ? ", nearest first" : "";
+        if (sortKey === "relevance") {
+          // Smart default: distance when located, else best-match for a search,
+          // else spreadsheet order. Z–A simply reverses that order.
+          if (haveOrigin) {
+            const distOf = new Map();
+            matches.forEach(function (s) { distOf.set(s, distanceMiles(s)); });
+            matches.sort(function (a, b) {
+              var da = distOf.get(a), db = distOf.get(b);
+              if (da === null) da = Infinity;
+              if (db === null) db = Infinity;
+              if (da !== db) return da - db;
+              return rankScore(a, terms) - rankScore(b, terms);
+            });
+          } else if (terms.length) {
+            const scoreOf = new Map();
+            matches.forEach(function (s) { scoreOf.set(s, rankScore(s, terms)); });
+            matches.sort(function (a, b) { return scoreOf.get(a) - scoreOf.get(b); });
+          }
+          if (sortDir === "desc") matches.reverse();
+        } else {
+          // Explicit column sort, with the A–Z / Z–A direction applied.
+          const f = sortDir === "asc" ? 1 : -1;
+          matches.sort(function (a, b) { return f * compareSites(a, b, sortKey); });
+        }
+
         if (!terms.length) {
           statusEl.innerHTML =
-            "Showing all <strong>" + SITES.length + "</strong> sites" + nearest + ".";
+            "Showing all <strong>" + SITES.length + "</strong> sites.";
         } else {
           statusEl.innerHTML =
             "<strong>" + matches.length + "</strong> " +
             (matches.length === 1 ? "site" : "sites") +
-            " matching &ldquo;" + escapeHtml(raw) + "&rdquo;" + nearest + ".";
+            " matching &ldquo;" + escapeHtml(raw) + "&rdquo;.";
         }
 
         // Highlight only single-term queries to keep marks accurate.
@@ -712,6 +864,120 @@
         });
       });
       applyMapPref();
+
+      // ---- Map view ---------------------------------------------------------
+      function loadLeaflet(cb) {
+        if (window.L) { cb(); return; }
+        if (mapState.lib) return;
+        mapState.lib = true;
+        var css = document.createElement("link");
+        css.rel = "stylesheet";
+        css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+        document.head.appendChild(css);
+        var js = document.createElement("script");
+        js.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        js.onload = cb;
+        js.onerror = function () {
+          mapState.lib = false;
+          mapViewEl.innerHTML =
+            '<div style="padding:24px;color:var(--muted);text-align:center">' +
+            "Couldn't load the map — check your internet connection, then try again.</div>";
+        };
+        document.head.appendChild(js);
+      }
+
+      function sitePopup(site) {
+        var d = (originLat !== null && site.lat != null)
+          ? "<br>" + formatDistance(site) + " away" : "";
+        return '<div class="map-pop"><b>' + escapeHtml(site.CLLI) + "</b><br>" +
+          escapeHtml(site["Site Name"]) + "<br>" +
+          escapeHtml(site.Address) + ", " + escapeHtml(site.City) + " " +
+          escapeHtml(site.ZIP) + d + "<br>" + directionsLink(site) + "</div>";
+      }
+
+      function initMap() {
+        mapState.map = L.map(mapViewEl, { scrollWheelZoom: true });
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+          attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
+          subdomains: "abcd", maxZoom: 19
+        }).addTo(mapState.map);
+        SITES.forEach(function (s) {
+          if (s.lat == null) return;
+          L.circleMarker([s.lat, s.lon], {
+            radius: 6, color: "#0ea5e9", weight: 2,
+            fillColor: "#38bdf8", fillOpacity: 0.85
+          }).bindPopup(sitePopup(s)).addTo(mapState.map);
+        });
+        mapState.inited = true;
+      }
+
+      function updateUserMarker() {
+        if (!mapState.inited || originLat === null) return;
+        if (mapState.userMarker) {
+          mapState.userMarker.setLatLng([originLat, originLon]);
+        } else {
+          mapState.userMarker = L.circleMarker([originLat, originLon], {
+            radius: 8, color: "#ffffff", weight: 3,
+            fillColor: "#f43f5e", fillOpacity: 1
+          }).bindPopup("You are here").addTo(mapState.map);
+        }
+      }
+
+      function fitMap() {
+        if (!mapState.inited) return;
+        var pts;
+        if (originLat !== null) {
+          pts = SITES.filter(function (s) { return s.lat != null; })
+            .map(function (s) { return { s: s, d: distanceMiles(s) }; })
+            .sort(function (a, b) { return a.d - b.d; })
+            .slice(0, 10).map(function (n) { return [n.s.lat, n.s.lon]; });
+          pts.push([originLat, originLon]);
+        } else {
+          pts = SITES.filter(function (s) { return s.lat != null; })
+            .map(function (s) { return [s.lat, s.lon]; });
+        }
+        if (pts.length) mapState.map.fitBounds(pts, { padding: [40, 40] });
+      }
+
+      function openMap() {
+        mapViewEl.classList.add("show");
+        resultsEl.style.display = "none";
+        sortBarEl.style.display = "none";
+        mapToggleTextEl.textContent = "Hide map";
+        mapToggleEl.setAttribute("aria-expanded", "true");
+        loadLeaflet(function () {
+          if (!mapState.inited) initMap();
+          updateUserMarker();
+          mapState.map.invalidateSize();
+          fitMap();
+        });
+      }
+
+      function closeMap() {
+        mapViewEl.classList.remove("show");
+        resultsEl.style.display = "";
+        sortBarEl.style.display = "";
+        mapToggleTextEl.textContent = "Show map of all sites";
+        mapToggleEl.setAttribute("aria-expanded", "false");
+      }
+
+      mapToggleEl.addEventListener("click", function () {
+        if (mapViewEl.classList.contains("show")) closeMap();
+        else openMap();
+      });
+
+      // Sort controls: dropdown picks the field, the button flips A–Z / Z–A.
+      sortByEl.addEventListener("change", function () {
+        sortKey = sortByEl.value;
+        updateSortDirLabel();
+        update();
+      });
+      sortDirEl.addEventListener("click", function () {
+        sortDir = sortDir === "asc" ? "desc" : "asc";
+        updateSortDirLabel();
+        update();
+      });
+      updateSortDirLabel();
 
       // Initial render: show everything, then try to grab the user's location
       // so the list sorts by distance automatically.
