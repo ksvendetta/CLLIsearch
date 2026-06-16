@@ -1,7 +1,8 @@
 # CLLIsearch
 
-A lightweight, zero-dependency web app for searching CLLI sites. Type anything
-into the search box and matching sites appear instantly right below it.
+A lightweight, zero-dependency web app for searching CLLI sites and sorting them
+by distance from you. Type anything into the search box and matching sites
+appear instantly right below it.
 
 **Search behavior**
 
@@ -10,6 +11,18 @@ into the search box and matching sites appear instantly right below it.
 - **Partial matches** — `wauk` matches `MILWAUKEE`.
 - **Multi-term** — space-separated terms are AND'd together (e.g. `madison main`).
 - Matching text is highlighted in the results.
+
+**Distance / location**
+
+- Click **Use my location** (or enter a ZIP / address) and every result shows
+  its distance from you, sorted **nearest-first**.
+- Distance is the primary sort once a location is set; otherwise results are
+  ranked by best-match column (CLLI → Address → GeoLoc → ZIP → City → State →
+  Site Name).
+- ⚠️ The browser's location button only works over **https** (or `localhost`) —
+  that's a browser security rule, not an app limitation. On the GitHub Pages
+  URL it works; on a plain `http://<lan-ip>` address it won't, so use the
+  **ZIP / address** box there instead.
 
 ## Run it
 
@@ -22,19 +35,27 @@ It's a static site — no build step, no server required.
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | The web app (UI + search logic, no dependencies). |
-| `data.js` | The site data as JS constants, loaded by `index.html`. |
+| `index.html` | The web app (UI + search + distance logic, no dependencies). |
+| `data.js` | Site data **with lat/lon coordinates**, loaded by `index.html`. |
 | `cllisites.xlsx` | Source spreadsheet (the data of record). |
-| `build_data.py` | Regenerates `data.js` from the spreadsheet. |
+| `geocode.py` | Regenerates `data.js` from the spreadsheet and geocodes addresses. |
+| `coords_cache.json` | Cached geocoding results, so re-runs are instant. |
 
 ## Updating the data
 
-Edit `cllisites.xlsx`, then regenerate the embedded data:
+Edit `cllisites.xlsx`, then regenerate `data.js` (this also geocodes any new or
+changed addresses):
 
 ```bash
 pip install openpyxl
-python build_data.py
+python geocode.py
 ```
 
-This rewrites `data.js` from the first worksheet. The first row is treated as
-column headers; every non-empty row below becomes a searchable site.
+The first worksheet row is treated as column headers; every non-empty row below
+becomes a searchable site. Coordinates come from the **US Census** batch
+geocoder, with an **OpenStreetMap (Nominatim)** fallback for rural-style
+addresses it can't parse (those are flagged `geoApprox` and shown with a `≈`).
+
+> Note: the **GeoLoc** column (e.g. `PB0105`) is an internal telco grid code,
+> *not* latitude/longitude — distances are computed from the geocoded street
+> addresses, not from GeoLoc.

@@ -1,0 +1,382 @@
+{
+  "826 W MICHIGAN ST, MILWAUKEE, WI, 53233": {
+    "lat": 43.037501315901,
+    "lon": -87.922218447672,
+    "approx": false
+  },
+  "7737 S HOWELL AVE, OAK CREEK, WI, 53154": {
+    "lat": 42.90392434359,
+    "lon": -87.911479866128,
+    "approx": false
+  },
+  "918 N 26TH ST, MILWAUKEE, WI, 53233": {
+    "lat": 43.041958461597,
+    "lon": -87.946214640302,
+    "approx": false
+  },
+  "405 FAIRWAY DR, BROOKFIELD, WI, 53005": {
+    "lat": 43.034407349779,
+    "lon": -88.103310556776,
+    "approx": false
+  },
+  "3044 S LOGAN AVE, MILWAUKEE, WI, 53207": {
+    "lat": 42.989054952719,
+    "lon": -87.896806458704,
+    "approx": false
+  },
+  "11301 W CALUMET RD, MILWAUKEE, WI, 53224": {
+    "lat": 43.155432916398,
+    "lon": -88.052926756126,
+    "approx": false
+  },
+  "1612 S 26TH ST, MILWAUKEE, WI, 53204": {
+    "lat": 43.013913920735,
+    "lon": -87.946358678777,
+    "approx": false
+  },
+  "2665 S 72ND ST, MILWAUKEE, WI, 53219": {
+    "lat": 42.996214772595,
+    "lon": -88.002631396965,
+    "approx": false
+  },
+  "7721 W FOND DU LAC AVE, MILWAUKEE, WI, 53218": {
+    "lat": 43.114302992093,
+    "lon": -88.007370966784,
+    "approx": false
+  },
+  "3281 N 41ST ST, MILWAUKEE, WI, 53216": {
+    "lat": 43.078688827924,
+    "lon": -87.964447987675,
+    "approx": false
+  },
+  "9940 W FOREST HOME AVE, HALES CORNERS, WI, 53130": {
+    "lat": 42.943817339497,
+    "lon": -88.037665044016,
+    "approx": false
+  },
+  "110 E GOOD HOPE RD, GLENDALE, WI, 53217": {
+    "lat": 43.147705244464,
+    "lon": -87.908953083712,
+    "approx": false
+  },
+  "1830 E CAPITOL DR, SHOREWOOD, WI, 53211": {
+    "lat": 43.08924125284,
+    "lon": -87.887069810248,
+    "approx": false
+  },
+  "2470 N 4TH ST, MILWAUKEE, WI, 53212": {
+    "lat": 43.063388032826,
+    "lon": -87.915513372963,
+    "approx": false
+  },
+  "722 N BROADWAY ST, MILWAUKEE, WI, 53202": {
+    "lat": 43.039330686798,
+    "lon": -87.907819975375,
+    "approx": false
+  },
+  "6812 AETNA CT, WAUWATOSA, WI, 53213": {
+    "lat": 43.041568267157,
+    "lon": -87.997641195197,
+    "approx": false
+  },
+  "3045 W GRANGE AVE, GREENFIELD, WI, 53221": {
+    "lat": 42.944806501494,
+    "lon": -87.952937250809,
+    "approx": false
+  },
+  "600 HIGHLAND AVE, MADISON, WI, 53705": {
+    "lat": 43.077161283563,
+    "lon": -89.429171453136,
+    "approx": false
+  },
+  "4858 SHEBOYGAN AVE, MADISON, WI, 53705": {
+    "lat": 43.072991745655,
+    "lon": -89.461365315459,
+    "approx": false
+  },
+  "4901 BLACK OAK DR, MADISON, WI, 53705": {
+    "lat": 43.032708224365,
+    "lon": -89.461704201639,
+    "approx": false
+  },
+  "1001 SPRING ST, MADISON, WI, 53715": {
+    "lat": 43.069272847593,
+    "lon": -89.402542472348,
+    "approx": false
+  },
+  "805 PFLAUM RD, MADISON, WI, 53716": {
+    "lat": 43.062079001949,
+    "lon": -89.317604452295,
+    "approx": false
+  },
+  "2802 SYLVAN AVE, MADISON, WI, 53705": {
+    "lat": 43.067110348279,
+    "lon": -89.436355658533,
+    "approx": false
+  },
+  "215 KEDZIE ST, MADISON, WI, 53704": {
+    "lat": 43.102694568403,
+    "lon": -89.347588293008,
+    "approx": false
+  },
+  "122 W MAIN ST, MADISON, WI, 53703": {
+    "lat": 43.072877616796,
+    "lon": -89.384552233406,
+    "approx": false
+  },
+  "315 W MIFFLIN ST, MADISON, WI, 53703": {
+    "lat": 43.073211278847,
+    "lon": -89.38846600491,
+    "approx": false
+  },
+  "645 W MAIN ST, LAKE GENEVA, WI, 53147": {
+    "lat": 42.591766367095,
+    "lon": -88.432832616591,
+    "approx": false
+  },
+  "234 GRAND AVE, LITTLE CHUTE, WI, 54140": {
+    "lat": 44.27718135799,
+    "lon": -88.315504957942,
+    "approx": false
+  },
+  "606 DODGE ST, KEWAUNEE, WI, 54216": {
+    "lat": 44.457139073026,
+    "lon": -87.504393588707,
+    "approx": false
+  },
+  "9270 39TH AVE, KENOSHA, WI, 53140": {
+    "lat": 42.537409553552,
+    "lon": -87.854353365745,
+    "approx": false
+  },
+  "5906 10TH AVE, KENOSHA, WI, 53140": {
+    "lat": 42.581663712213,
+    "lon": -87.822921610353,
+    "approx": false
+  },
+  "135 W WISCONSIN AVE, KAUKAUNA, WI, 54130": {
+    "lat": 44.28211031647,
+    "lon": -88.268609717709,
+    "approx": false
+  },
+  "136 E CENTER ST, JUNEAU, WI, 53039": {
+    "lat": 43.408101745881,
+    "lon": -88.705323298151,
+    "approx": false
+  },
+  "9539 E COUNTY ROAD A, JANESVILLE, WI, 53546": {
+    "lat": 42.697987148928,
+    "lon": -88.856825750314,
+    "approx": false
+  },
+  "301 E MILWAUKEE ST, JANESVILLE, WI, 53545": {
+    "lat": 42.684011160607,
+    "lon": -89.020472669972,
+    "approx": false
+  },
+  "212 S CENTER AVE, JEFFERSON, WI, 53549": {
+    "lat": 43.004197138783,
+    "lon": -88.805827260241,
+    "approx": false
+  },
+  "W208 N16851 N CENTER ST, JACKSON, WI, 53037": {
+    "lat": 43.325377513794,
+    "lon": -88.167085991918,
+    "approx": false
+  },
+  "103 E SUMNER ST, HARTFORD, WI, 53027": {
+    "lat": 43.317608279263,
+    "lon": -88.377111623799,
+    "approx": false
+  },
+  "307 MILL ST, HORICON, WI, 53032": {
+    "lat": 43.450728646286,
+    "lon": -88.632365831622,
+    "approx": false
+  },
+  "223 EMBARRASS ST, HORTONVILLE, WI, 54944": {
+    "lat": 44.3361239171,
+    "lon": -88.639080365083,
+    "approx": false
+  },
+  "801 2ND ST, HUDSON, WI, 54016": {
+    "lat": 44.978196416623,
+    "lon": -92.757130076853,
+    "approx": false
+  },
+  "3480 HUBERTUS RD, HUBERTUS, WI, 53033": {
+    "lat": 43.236516679464,
+    "lon": -88.211308968427,
+    "approx": false
+  },
+  "W6857 GREENVILLE DR, GREENVILLE, WI, 54942": {
+    "lat": 44.299237505815,
+    "lon": -88.534931467934,
+    "approx": false
+  },
+  "134 FREEMAN ST, GENOA CITY, WI, 53128": {
+    "lat": 42.496488493211,
+    "lon": -88.329782971238,
+    "approx": false
+  },
+  "2420 NICOLET DR, GREEN BAY, WI, 54311": {
+    "lat": 44.531745203734,
+    "lon": -87.931645498657,
+    "approx": false
+  },
+  "1590 STILES RD, GREEN BAY, WI, 54303": {
+    "lat": 44.539209535511,
+    "lon": -88.056351157581,
+    "approx": false
+  },
+  "1936 CARDINAL LN, GREEN BAY, WI, 54303": {
+    "lat": 44.59438490375,
+    "lon": -88.083316458271,
+    "approx": false
+  },
+  "155 HUTH ST, GREEN BAY, WI, 54302": {
+    "lat": 44.501362690898,
+    "lon": -87.97426203935,
+    "approx": false
+  },
+  "703 S RIDGE RD, GREEN BAY, WI, 54304": {
+    "lat": 44.519364486012,
+    "lon": -88.052660065028,
+    "approx": false
+  },
+  "205 S JEFFERSON ST, GREEN BAY, WI, 54301": {
+    "lat": 44.51195996043,
+    "lon": -88.014142613071,
+    "approx": false
+  },
+  "201 MILWAUKEE AVE E, FORT ATKINSON, WI, 53538": {
+    "lat": 42.926924958584,
+    "lon": -88.834564870957,
+    "approx": false
+  },
+  "70 E DIVISION ST, FOND DU LAC, WI, 54935": {
+    "lat": 43.77879601398,
+    "lon": -88.444616245134,
+    "approx": false
+  },
+  "39 N MADISON ST, EVANSVILLE, WI, 53536": {
+    "lat": 42.781165213203,
+    "lon": -89.299273794622,
+    "approx": false
+  },
+  "310 N DEWEY ST, EAU CLAIRE, WI, 54701": {
+    "lat": 44.816173699095,
+    "lon": -91.499224867222,
+    "approx": false
+  },
+  "304 S DEWEY ST, EAU CLAIRE, WI, 54701": {
+    "lat": 44.81177664475,
+    "lon": -91.497295077513,
+    "approx": false
+  },
+  "364 W KINNE ST, ELLSWORTH, WI, 54011": {
+    "lat": 44.733043342091,
+    "lon": -92.483377852375,
+    "approx": false
+  },
+  "116 S 3RD ST, DELAVAN, WI, 53115": {
+    "lat": 42.632718377242,
+    "lon": -88.64542443203,
+    "approx": false
+  },
+  "119 S MICHIGAN ST, DE PERE, WI, 54115": {
+    "lat": 44.448655270352,
+    "lon": -88.057951460354,
+    "approx": false
+  },
+  "128 S DICKASON BLVD, COLUMBUS, WI, 53925": {
+    "lat": 43.338847246496,
+    "lon": -89.016075612193,
+    "approx": false
+  },
+  "2813 CTH G, CALEDONIA, WI, 53108": {
+    "lat": 42.807918840811,
+    "lon": -87.970087995203,
+    "approx": false
+  },
+  "21 E COLUMBIA ST, CHIPPEWA FALLS, WI, 54729": {
+    "lat": 44.938095174458,
+    "lon": -91.393294828782,
+    "approx": false
+  },
+  "W63 N548 HANOVER AVE, CEDARBURG, WI, 53012": {
+    "lat": 43.295590777131,
+    "lon": -87.988693584355,
+    "approx": false
+  },
+  "103 W 3RD ST, BEAVER DAM, WI, 53916": {
+    "lat": 43.458359813027,
+    "lon": -88.837072089204,
+    "approx": false
+  },
+  "125 E WASHINGTON ST, BURLINGTON, WI, 53105": {
+    "lat": 42.678526894705,
+    "lon": -88.277785926431,
+    "approx": false
+  },
+  "555 WOELFEL RD, BROOKFIELD, WI, 53005": {
+    "lat": 43.037552915215,
+    "lon": -88.136838369746,
+    "approx": false
+  },
+  "W229 S8660 BIG BEND RD, VERNON, WI, 53103": {
+    "lat": 42.887761254218,
+    "lon": -88.208766544763,
+    "approx": false
+  },
+  "415 PROSPECT AVE, BELOIT, WI, 53511": {
+    "lat": 42.500146577959,
+    "lon": -89.030819162309,
+    "approx": false
+  },
+  "1231 W SPENCER ST, APPLETON, WI, 54914": {
+    "lat": 44.258457894504,
+    "lon": -88.424629904082,
+    "approx": false
+  },
+  "221 W WASHINGTON ST, APPLETON, WI, 54911": {
+    "lat": 44.262886374617,
+    "lon": -88.407602549875,
+    "approx": false
+  },
+  "317 5TH ST, ALGOMA, WI, 54201": {
+    "lat": 44.610285958255,
+    "lon": -87.439887656614,
+    "approx": false
+  },
+  "W156 N4969 PILGRIM RD, MENOMONEE FALLS, WI, 53052": {
+    "lat": 43.1081025,
+    "lon": -88.1062558,
+    "approx": true
+  },
+  "7404 W COUNTY LINE RD, MILWAUKEE, WI, 53223": {
+    "lat": 43.1931003,
+    "lon": -88.0014137,
+    "approx": true
+  },
+  "W299 N5710 COUNTY RD E, HARTLAND, WI, 53029": {
+    "lat": 43.105008,
+    "lon": -88.3420398,
+    "approx": true
+  },
+  "1346 CO RD V, HOULTON, WI, 54082": {
+    "lat": 45.0605226,
+    "lon": -92.791318,
+    "approx": true
+  },
+  "US HWY 14 3 MI SE COON VALLEY, COON VALLEY, WI, 54667": {
+    "lat": 43.7024394,
+    "lon": -91.0169953,
+    "approx": true
+  },
+  "21112 SWENSON DR, BROOKFIELD, WI, 53186": {
+    "lat": 43.0323839,
+    "lon": -88.1739566,
+    "approx": true
+  }
+}

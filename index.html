@@ -56,12 +56,12 @@
 
     #search {
       width: 100%;
-      padding: 16px 46px 16px 18px;
-      font-size: 1.1rem;
+      padding: 24px 64px 24px 26px;
+      font-size: 1.55rem;
       color: var(--text);
       background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      border: 2px solid var(--border);
+      border-radius: 16px;
       outline: none;
       transition: border-color 0.15s, box-shadow 0.15s;
     }
@@ -76,15 +76,15 @@
     .clear-btn {
       position: absolute;
       top: 50%;
-      right: 12px;
+      right: 18px;
       transform: translateY(-50%);
-      width: 26px;
-      height: 26px;
+      width: 36px;
+      height: 36px;
       border: none;
       border-radius: 50%;
       background: var(--panel-2);
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 1.35rem;
       line-height: 1;
       cursor: pointer;
       display: none;
@@ -93,6 +93,66 @@
     }
     .clear-btn:hover { color: var(--text); background: var(--border); }
     .clear-btn.show { display: flex; }
+
+    .origin-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .loc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #04263a;
+      background: var(--accent);
+      border: none;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .loc-btn:hover { background: #7dd3fc; }
+    .loc-btn svg { flex-shrink: 0; }
+
+    .origin-form { display: flex; gap: 6px; flex: 1 1 200px; }
+    .origin-form input {
+      flex: 1;
+      min-width: 0;
+      padding: 9px 12px;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      outline: none;
+    }
+    .origin-form input:focus { border-color: var(--accent); }
+    .origin-form button {
+      padding: 9px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      cursor: pointer;
+    }
+    .origin-form button:hover { background: var(--border); }
+
+    .origin-status {
+      flex-basis: 100%;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .origin-status strong { color: var(--accent); }
+
+    th.dist-col, td.dist-cell { white-space: nowrap; }
+    td.dist-cell .val { font-weight: 700; color: var(--accent); }
 
     .status {
       margin: 14px 2px 10px;
@@ -145,9 +205,35 @@
     mark {
       background: var(--highlight);
       color: #1a1a1a;
-      padding: 0 1px;
+      padding: 0;
       border-radius: 2px;
     }
+
+    th.dir-col, td.dir-cell {
+      width: 1%;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .dir-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #04263a;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.05s;
+    }
+    .dir-btn:hover { background: #7dd3fc; }
+    .dir-btn:active { transform: translateY(1px); }
+    .dir-btn svg { flex-shrink: 0; }
 
     .empty {
       text-align: center;
@@ -195,14 +281,20 @@
         flex-shrink: 0;
       }
       td.clli { text-align: right; }
+      td.dir-cell {
+        width: 100%;
+        justify-content: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      td.dir-cell::before { content: none; }
+      .dir-btn { padding: 10px 18px; font-size: 0.92rem; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <h1>CLLI Site Search</h1>
-      <p class="subtitle">Search by CLLI, address, city, ZIP, site name, or GeoLoc — any column, any case, partial matches.</p>
       <div class="search-box">
         <input
           id="search"
@@ -215,6 +307,19 @@
           aria-label="Search CLLI sites"
         />
         <button class="clear-btn" id="clear" title="Clear search" aria-label="Clear search">&times;</button>
+      </div>
+
+      <div class="origin-bar">
+        <button class="loc-btn" id="locBtn" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+          Use my location
+        </button>
+        <form class="origin-form" id="originForm">
+          <input id="originInput" type="text"
+                 placeholder="or enter a ZIP / address" aria-label="Origin ZIP or address" />
+          <button type="submit">Go</button>
+        </form>
+        <span class="origin-status" id="originStatus">Sort sites by distance from you.</span>
       </div>
     </header>
 
@@ -234,6 +339,10 @@
       const statusEl = document.getElementById("status");
       const resultsEl = document.getElementById("results");
       const totalCountEl = document.getElementById("total-count");
+      const locBtnEl = document.getElementById("locBtn");
+      const originFormEl = document.getElementById("originForm");
+      const originInputEl = document.getElementById("originInput");
+      const originStatusEl = document.getElementById("originStatus");
 
       totalCountEl.textContent = SITES.length;
 
@@ -245,6 +354,105 @@
           .toLowerCase();
         return { site: site, blob: blob };
       });
+
+      // Result ranking: a row scores by the highest-priority column that one of
+      // its search terms matches. Lower score = better match = listed first.
+      // Any column not listed here ranks last.
+      const RANK_ORDER = ["CLLI", "Address", "GeoLoc", "ZIP", "City", "State", "Site Name"];
+
+      function rankScore(site, terms) {
+        for (var ci = 0; ci < RANK_ORDER.length; ci++) {
+          var val = (site[RANK_ORDER[ci]] || "").toLowerCase();
+          for (var ti = 0; ti < terms.length; ti++) {
+            if (val.indexOf(terms[ti]) !== -1) return ci;
+          }
+        }
+        return RANK_ORDER.length;
+      }
+
+      // ---- Distance / origin ------------------------------------------------
+      // The user's origin (their device location, or a typed ZIP/address).
+      // Null until set; once set, results gain a Distance column and sort
+      // nearest-first.
+      var originLat = null, originLon = null;
+
+      // ZIP -> [lat, lon], built from the site data so a typed site-area ZIP
+      // resolves instantly with no network call.
+      var ZIP_MAP = {};
+      SITES.forEach(function (s) {
+        if (s.ZIP && s.lat != null && !(s.ZIP in ZIP_MAP)) ZIP_MAP[s.ZIP] = [s.lat, s.lon];
+      });
+
+      function haversineMiles(la1, lo1, la2, lo2) {
+        var R = 3958.7613, toRad = function (d) { return d * Math.PI / 180; };
+        var dLa = toRad(la2 - la1), dLo = toRad(lo2 - lo1);
+        var a = Math.sin(dLa / 2) * Math.sin(dLa / 2) +
+                Math.cos(toRad(la1)) * Math.cos(toRad(la2)) *
+                Math.sin(dLo / 2) * Math.sin(dLo / 2);
+        return 2 * R * Math.asin(Math.sqrt(a));
+      }
+
+      function distanceMiles(site) {
+        if (originLat === null || site.lat == null) return null;
+        return haversineMiles(originLat, originLon, site.lat, site.lon);
+      }
+
+      function formatDistance(site) {
+        var d = distanceMiles(site);
+        if (d === null) return "—";
+        var txt = (d < 10 ? d.toFixed(1) : Math.round(d).toString()) + " mi";
+        return site.geoApprox ? "≈ " + txt : txt;
+      }
+
+      function setOrigin(lat, lon, label) {
+        originLat = lat;
+        originLon = lon;
+        originStatusEl.innerHTML =
+          "Sorting by distance from <strong>" + escapeHtml(label) + "</strong>.";
+        update();
+      }
+
+      function requestGeolocation() {
+        if (!navigator.geolocation) {
+          originStatusEl.textContent =
+            "This browser can't share location — enter a ZIP or address.";
+          return;
+        }
+        originStatusEl.textContent = "Locating you…";
+        navigator.geolocation.getCurrentPosition(
+          function (pos) {
+            setOrigin(pos.coords.latitude, pos.coords.longitude, "your location");
+          },
+          function (err) {
+            originStatusEl.innerHTML =
+              "Couldn't get your location (" + escapeHtml(err.message) +
+              "). The location button needs the https site; otherwise enter a ZIP / address.";
+          },
+          { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 }
+        );
+      }
+
+      function resolveOrigin(text) {
+        text = (text || "").trim();
+        if (!text) return;
+        // Site-area ZIP: resolve instantly from embedded data (no network).
+        if (/^\d{5}$/.test(text) && ZIP_MAP[text]) {
+          setOrigin(ZIP_MAP[text][0], ZIP_MAP[text][1], text);
+          return;
+        }
+        // Anything else: OpenStreetMap (CORS-enabled, unlike the Census API).
+        originStatusEl.textContent = "Looking up “" + text + "”…";
+        fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&q=" +
+              encodeURIComponent(text))
+          .then(function (r) { return r.json(); })
+          .then(function (a) {
+            if (a && a[0]) setOrigin(parseFloat(a[0].lat), parseFloat(a[0].lon), text);
+            else originStatusEl.textContent = "Couldn't find “" + text + "”. Try a ZIP code.";
+          })
+          .catch(function () {
+            originStatusEl.textContent = "Lookup failed — check your connection, or type a nearby ZIP.";
+          });
+      }
 
       function escapeHtml(s) {
         return String(s)
@@ -261,6 +469,26 @@
         return safe.replace(new RegExp("(" + escaped + ")", "ig"), "<mark>$1</mark>");
       }
 
+      // Inline navigation/send arrow icon for the Directions button.
+      const DIR_ICON =
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+        '<path d="M21.7 2.3a1 1 0 0 0-1.05-.23l-18 7a1 1 0 0 0 .08 1.88l7.46 2.32 2.32 7.46a1 1 0 0 0 .9.7h.05a1 1 0 0 0 .92-.63l7-18a1 1 0 0 0-.23-1.05z"/></svg>';
+
+      // Build a cross-platform maps directions URL to a site's address.
+      // The api=1 form opens the native Maps app on mobile (or maps.google.com
+      // on desktop) with directions from the user's current location.
+      function mapsUrl(site) {
+        const stateZip = [site.State, site.ZIP].filter(Boolean).join(" ");
+        const dest = [site.Address, site.City, stateZip]
+          .filter(Boolean)
+          .join(", ");
+        const href =
+          "https://www.google.com/maps/dir/?api=1&destination=" +
+          encodeURIComponent(dest);
+        // Use &amp; so the URL is valid when embedded in an HTML attribute.
+        return href.replace(/&/g, "&amp;");
+      }
+
       function render(matches, query) {
         if (matches.length === 0) {
           resultsEl.innerHTML =
@@ -270,19 +498,33 @@
           return;
         }
 
+        var haveOrigin = originLat !== null;
         let html = "<table><thead><tr>";
+        if (haveOrigin) html += '<th class="dist-col">Distance</th>';
         COLUMNS.forEach(function (c) { html += "<th>" + escapeHtml(c) + "</th>"; });
+        html += '<th class="dir-col"></th>';
         html += "</tr></thead><tbody>";
 
         matches.forEach(function (site) {
           html += "<tr>";
+          if (haveOrigin) {
+            html += '<td class="dist-cell" data-label="Distance"><span class="val">' +
+              formatDistance(site) + "</span></td>";
+          }
           COLUMNS.forEach(function (c) {
             const cls = c === "CLLI" ? ' class="clli"' : "";
             html +=
               "<td" + cls + ' data-label="' + escapeHtml(c) + '">' +
-              highlight(site[c] || "", query) +
+              '<span class="val">' + highlight(site[c] || "", query) + "</span>" +
               "</td>";
           });
+          html +=
+            '<td class="dir-cell" data-label="">' +
+            '<a class="dir-btn" href="' + mapsUrl(site) + '" ' +
+            'target="_blank" rel="noopener noreferrer" ' +
+            'title="Get directions to ' + escapeHtml(site.Address) + '">' +
+            DIR_ICON + "Directions</a>" +
+            "</td>";
           html += "</tr>";
         });
 
@@ -295,24 +537,49 @@
         const query = raw.toLowerCase();
         clearEl.classList.toggle("show", raw.length > 0);
 
-        if (!query) {
-          statusEl.innerHTML =
-            "Showing all <strong>" + SITES.length + "</strong> sites.";
-          render(SITES, "");
-          return;
+        // Filter: empty query shows all; otherwise every whitespace-separated
+        // term must match somewhere in the row (any column, partial, any case).
+        const terms = query ? query.split(/\s+/).filter(Boolean) : [];
+        let matches;
+        if (!terms.length) {
+          matches = SITES.slice();
+        } else {
+          matches = INDEX.filter(function (entry) {
+            return terms.every(function (t) { return entry.blob.indexOf(t) !== -1; });
+          }).map(function (entry) { return entry.site; });
         }
 
-        // Multi-term AND search: every whitespace-separated term must match
-        // somewhere in the row (any column). Each term is a partial match.
-        const terms = query.split(/\s+/).filter(Boolean);
-        const matches = INDEX.filter(function (entry) {
-          return terms.every(function (t) { return entry.blob.indexOf(t) !== -1; });
-        }).map(function (entry) { return entry.site; });
+        const haveOrigin = originLat !== null;
+        if (haveOrigin) {
+          // Distance is the primary sort: nearest first. Ties (and any site
+          // without coordinates) fall back to best-match column priority.
+          const distOf = new Map();
+          matches.forEach(function (s) { distOf.set(s, distanceMiles(s)); });
+          matches.sort(function (a, b) {
+            var da = distOf.get(a), db = distOf.get(b);
+            if (da === null) da = Infinity;
+            if (db === null) db = Infinity;
+            if (da !== db) return da - db;
+            return rankScore(a, terms) - rankScore(b, terms);
+          });
+        } else if (terms.length) {
+          // No origin yet: order by best-match column (CLLI > Address > GeoLoc
+          // > ZIP > City > State > Site Name). Stable sort keeps ties in order.
+          const scoreOf = new Map();
+          matches.forEach(function (s) { scoreOf.set(s, rankScore(s, terms)); });
+          matches.sort(function (a, b) { return scoreOf.get(a) - scoreOf.get(b); });
+        }
 
-        statusEl.innerHTML =
-          "<strong>" + matches.length + "</strong> " +
-          (matches.length === 1 ? "site" : "sites") +
-          " matching &ldquo;" + escapeHtml(raw) + "&rdquo;";
+        const nearest = haveOrigin ? ", nearest first" : "";
+        if (!terms.length) {
+          statusEl.innerHTML =
+            "Showing all <strong>" + SITES.length + "</strong> sites" + nearest + ".";
+        } else {
+          statusEl.innerHTML =
+            "<strong>" + matches.length + "</strong> " +
+            (matches.length === 1 ? "site" : "sites") +
+            " matching &ldquo;" + escapeHtml(raw) + "&rdquo;" + nearest + ".";
+        }
 
         // Highlight only single-term queries to keep marks accurate.
         render(matches, terms.length === 1 ? raw : "");
@@ -325,9 +592,17 @@
         update();
       });
 
-      // Initial render: show everything.
+      locBtnEl.addEventListener("click", requestGeolocation);
+      originFormEl.addEventListener("submit", function (e) {
+        e.preventDefault();
+        resolveOrigin(originInputEl.value);
+      });
+
+      // Initial render: show everything, then try to grab the user's location
+      // so the list sorts by distance automatically.
       update();
       searchEl.focus();
+      requestGeolocation();
     })();
   </script>
 </body>

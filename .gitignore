@@ -4,8 +4,12 @@ __pycache__/
 .venv/
 venv/
 
-# Intermediate build artifact (regenerate with build_data.py)
+# Intermediate build artifacts (regenerate with geocode.py)
 sites.json
+_batch.csv
+
+# Local dev tooling (machine-specific paths)
+.claude/
 
 # OS / editor
 .DS_Store

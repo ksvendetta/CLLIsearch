@@ -1,5 +1,6 @@
-// Auto-generated from cllisites.xlsx by build_data.py — do not edit by hand.
+// Auto-generated from cllisites.xlsx by geocode.py — do not edit by hand.
 // Columns: CLLI, Address, City, State, ZIP, Site Name, GeoLoc
+// Each site also has lat/lon (WGS84) and geoApprox (true = city-level fallback).
 const COLUMNS = ["CLLI", "Address", "City", "State", "ZIP", "Site Name", "GeoLoc"];
 const SITES = [
   {
@@ -9,7 +10,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53233",
     "Site Name": "MILWAUKEE ATT",
-    "GeoLoc": "PB0105"
+    "GeoLoc": "PB0105",
+    "lat": 43.037501,
+    "lon": -87.922218,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI56",
@@ -18,7 +22,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53154",
     "Site Name": "HOWELL",
-    "GeoLoc": "PD0113"
+    "GeoLoc": "PD0113",
+    "lat": 42.903924,
+    "lon": -87.91148,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI48",
@@ -27,7 +34,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53233",
     "Site Name": "WEST",
-    "GeoLoc": "PC0107"
+    "GeoLoc": "PC0107",
+    "lat": 43.041958,
+    "lon": -87.946215,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI45",
@@ -36,7 +46,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53005",
     "Site Name": "SUNSET",
-    "GeoLoc": "PF0106"
+    "GeoLoc": "PF0106",
+    "lat": 43.034407,
+    "lon": -88.103311,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI42",
@@ -45,7 +58,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53207",
     "Site Name": "SHERIDAN",
-    "GeoLoc": "PD0111"
+    "GeoLoc": "PD0111",
+    "lat": 42.989055,
+    "lon": -87.896806,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI38",
@@ -54,7 +70,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53224",
     "Site Name": "PARK PLACE",
-    "GeoLoc": "PG0136"
+    "GeoLoc": "PG0136",
+    "lat": 43.155433,
+    "lon": -88.052927,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI34",
@@ -63,7 +82,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53204",
     "Site Name": "MITCHELL",
-    "GeoLoc": "PD0110"
+    "GeoLoc": "PD0110",
+    "lat": 43.013914,
+    "lon": -87.946359,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI31",
@@ -72,7 +94,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53052",
     "Site Name": "MARCY",
-    "GeoLoc": "PG0116"
+    "GeoLoc": "PG0116",
+    "lat": 43.108103,
+    "lon": -88.106256,
+    "geoApprox": true
   },
   {
     "CLLI": "MILWWI30",
@@ -81,7 +106,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53219",
     "Site Name": "LINCOLN",
-    "GeoLoc": "PH0109"
+    "GeoLoc": "PH0109",
+    "lat": 42.996215,
+    "lon": -88.002631,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI28",
@@ -90,7 +118,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53218",
     "Site Name": "HOPKINS",
-    "GeoLoc": "PG0111"
+    "GeoLoc": "PG0111",
+    "lat": 43.114303,
+    "lon": -88.007371,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI27",
@@ -99,7 +130,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53216",
     "Site Name": "HILLTOP",
-    "GeoLoc": "PB0110"
+    "GeoLoc": "PB0110",
+    "lat": 43.078689,
+    "lon": -87.964448,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI25",
@@ -108,7 +142,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53130",
     "Site Name": "HALES CORNER",
-    "GeoLoc": "PH0108"
+    "GeoLoc": "PH0108",
+    "lat": 42.943817,
+    "lon": -88.037665,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI23",
@@ -117,7 +154,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53217",
     "Site Name": "FLAGSTONE",
-    "GeoLoc": "PG0109"
+    "GeoLoc": "PG0109",
+    "lat": 43.147705,
+    "lon": -87.908953,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI22",
@@ -126,7 +166,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53211",
     "Site Name": "EDGEWOOD",
-    "GeoLoc": "PB0108"
+    "GeoLoc": "PB0108",
+    "lat": 43.089241,
+    "lon": -87.88707,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI17",
@@ -135,7 +178,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53212",
     "Site Name": "CONCORD",
-    "GeoLoc": "PB0107"
+    "GeoLoc": "PB0107",
+    "lat": 43.063388,
+    "lon": -87.915513,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI16",
@@ -144,7 +190,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53223",
     "Site Name": "CHESTNUT",
-    "GeoLoc": "PG0106"
+    "GeoLoc": "PG0106",
+    "lat": 43.1931,
+    "lon": -88.001414,
+    "geoApprox": true
   },
   {
     "CLLI": "MILWWI13",
@@ -153,7 +202,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53202",
     "Site Name": "BROADWAY",
-    "GeoLoc": "PC0106"
+    "GeoLoc": "PC0106",
+    "lat": 43.039331,
+    "lon": -87.90782,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI12",
@@ -162,7 +214,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53213",
     "Site Name": "BLUEMOUND",
-    "GeoLoc": "PH0107"
+    "GeoLoc": "PH0107",
+    "lat": 43.041568,
+    "lon": -87.997641,
+    "geoApprox": false
   },
   {
     "CLLI": "MILWWI10",
@@ -171,7 +226,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53221",
     "Site Name": "ATLANTIC",
-    "GeoLoc": "PD0106"
+    "GeoLoc": "PD0106",
+    "lat": 42.944807,
+    "lon": -87.952937,
+    "geoApprox": false
   },
   {
     "CLLI": "MDSNWIUH",
@@ -180,7 +238,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53705",
     "Site Name": "MADISON SPRING UW HOSPITAL",
-    "GeoLoc": "PW0106"
+    "GeoLoc": "PW0106",
+    "lat": 43.077161,
+    "lon": -89.429171,
+    "geoApprox": false
   },
   {
     "CLLI": "MDSNWI17",
@@ -189,7 +250,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53705",
     "Site Name": "MADISON SPRING - HILL FARM",
-    "GeoLoc": "PW0193"
+    "GeoLoc": "PW0193",
+    "lat": 43.072992,
+    "lon": -89.461365,
+    "geoApprox": false
   },
   {
     "CLLI": "MDSNWI16",
@@ -198,7 +262,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53705",
     "Site Name": "MADISON BLACK OAK",
-    "GeoLoc": "PW0127"
+    "GeoLoc": "PW0127",
+    "lat": 43.032708,
+    "lon": -89.461704,
+    "geoApprox": false
   },
   {
     "CLLI": "MDSNWI15",
@@ -207,7 +274,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53715",
     "Site Name": "MADISON SPRING",
-    "GeoLoc": "PW0117"
+    "GeoLoc": "PW0117",
+    "lat": 43.069273,
+    "lon": -89.402542,
+    "geoApprox": false
   },
   {
     "CLLI": "MDSNWI14",
@@ -216,7 +286,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53716",
     "Site Name": "MADISON PFLAUM",
-    "GeoLoc": "PW0114"
+    "GeoLoc": "PW0114",
+    "lat": 43.062079,
+    "lon": -89.317604,
+    "geoApprox": false
   },
   {
     "CLLI": "MDSNWI13",
@@ -225,7 +298,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53705",
     "Site Name": "MADISON SYLVAN",
-    "GeoLoc": "PW0119"
+    "GeoLoc": "PW0119",
+    "lat": 43.06711,
+    "lon": -89.436356,
+    "geoApprox": false
   },
   {
     "CLLI": "MDSNWI12",
@@ -234,7 +310,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53704",
     "Site Name": "MADISON KEDZIE",
-    "GeoLoc": "PW0109"
+    "GeoLoc": "PW0109",
+    "lat": 43.102695,
+    "lon": -89.347588,
+    "geoApprox": false
   },
   {
     "CLLI": "MDSNWI11",
@@ -243,7 +322,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53703",
     "Site Name": "MADISON MAIN",
-    "GeoLoc": "PW0107"
+    "GeoLoc": "PW0107",
+    "lat": 43.072878,
+    "lon": -89.384552,
+    "geoApprox": false
   },
   {
     "CLLI": "MDSNWI02",
@@ -252,7 +334,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53703",
     "Site Name": "MADISON POP (T)",
-    "GeoLoc": "PW0121"
+    "GeoLoc": "PW0121",
+    "lat": 43.073211,
+    "lon": -89.388466,
+    "geoApprox": false
   },
   {
     "CLLI": "LKGNWI01",
@@ -261,7 +346,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53147",
     "Site Name": "LAKE GENEVA",
-    "GeoLoc": "PV1206"
+    "GeoLoc": "PV1206",
+    "lat": 42.591766,
+    "lon": -88.432833,
+    "geoApprox": false
   },
   {
     "CLLI": "LCHTWI11",
@@ -270,7 +358,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54140",
     "Site Name": "LITTLE CHUTE",
-    "GeoLoc": "PP1207"
+    "GeoLoc": "PP1207",
+    "lat": 44.277181,
+    "lon": -88.315505,
+    "geoApprox": false
   },
   {
     "CLLI": "KEWNWI11",
@@ -279,7 +370,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54216",
     "Site Name": "KEWAUNEE",
-    "GeoLoc": "PN5208"
+    "GeoLoc": "PN5208",
+    "lat": 44.457139,
+    "lon": -87.504394,
+    "geoApprox": false
   },
   {
     "CLLI": "KENOWI11",
@@ -288,7 +382,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53140",
     "Site Name": "KENOSHA SOUTH/39TH AV",
-    "GeoLoc": "PX0211"
+    "GeoLoc": "PX0211",
+    "lat": 42.53741,
+    "lon": -87.854353,
+    "geoApprox": false
   },
   {
     "CLLI": "KENOWI01",
@@ -297,7 +394,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53140",
     "Site Name": "KENOSHA MAIN/10TH AV",
-    "GeoLoc": "PX0206"
+    "GeoLoc": "PX0206",
+    "lat": 42.581664,
+    "lon": -87.822922,
+    "geoApprox": false
   },
   {
     "CLLI": "KAUKWI11",
@@ -306,7 +406,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54130",
     "Site Name": "KAUKAUNA",
-    "GeoLoc": "PP1206"
+    "GeoLoc": "PP1206",
+    "lat": 44.28211,
+    "lon": -88.26861,
+    "geoApprox": false
   },
   {
     "CLLI": "JUNEWI11",
@@ -315,7 +418,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53039",
     "Site Name": "JUNEAU",
-    "GeoLoc": "PP1206"
+    "GeoLoc": "PP1206",
+    "lat": 43.408102,
+    "lon": -88.705323,
+    "geoApprox": false
   },
   {
     "CLLI": "JNVLWIAT",
@@ -324,7 +430,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53546",
     "Site Name": "JANESVILLE POP (T)",
-    "GeoLoc": "PL1110"
+    "GeoLoc": "PL1110",
+    "lat": 42.697987,
+    "lon": -88.856826,
+    "geoApprox": false
   },
   {
     "CLLI": "JNVLWI01",
@@ -333,7 +442,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53545",
     "Site Name": "JANESVILLE",
-    "GeoLoc": "PV0306"
+    "GeoLoc": "PV0306",
+    "lat": 42.684011,
+    "lon": -89.020473,
+    "geoApprox": false
   },
   {
     "CLLI": "JFSNWI11",
@@ -342,7 +454,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53549",
     "Site Name": "JEFFERSON",
-    "GeoLoc": "PV3207"
+    "GeoLoc": "PV3207",
+    "lat": 43.004197,
+    "lon": -88.805827,
+    "geoApprox": false
   },
   {
     "CLLI": "JCSNWI11",
@@ -351,7 +466,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53037",
     "Site Name": "JACKSON",
-    "GeoLoc": "PL6506"
+    "GeoLoc": "PL6506",
+    "lat": 43.325378,
+    "lon": -88.167086,
+    "geoApprox": false
   },
   {
     "CLLI": "HRLDWI11",
@@ -360,7 +478,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53029",
     "Site Name": "HARTLAND",
-    "GeoLoc": "PF1707"
+    "GeoLoc": "PF1707",
+    "lat": 43.105008,
+    "lon": -88.34204,
+    "geoApprox": true
   },
   {
     "CLLI": "HRFRWI11",
@@ -369,7 +490,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53027",
     "Site Name": "HARTFORD",
-    "GeoLoc": "PL6107"
+    "GeoLoc": "PL6107",
+    "lat": 43.317608,
+    "lon": -88.377112,
+    "geoApprox": false
   },
   {
     "CLLI": "HRCNWI11",
@@ -378,7 +502,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53032",
     "Site Name": "HORICON",
-    "GeoLoc": "PL1109"
+    "GeoLoc": "PL1109",
+    "lat": 43.450729,
+    "lon": -88.632366,
+    "geoApprox": false
   },
   {
     "CLLI": "HOVLWI12",
@@ -387,7 +514,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54944",
     "Site Name": "HORTONVILLE",
-    "GeoLoc": "PP1102"
+    "GeoLoc": "PP1102",
+    "lat": 44.336124,
+    "lon": -88.63908,
+    "geoApprox": false
   },
   {
     "CLLI": "HLTNWI11",
@@ -396,7 +526,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54082",
     "Site Name": "HOULTON",
-    "GeoLoc": "PK2509"
+    "GeoLoc": "PK2509",
+    "lat": 45.060523,
+    "lon": -92.791318,
+    "geoApprox": true
   },
   {
     "CLLI": "HDSNWI01",
@@ -405,7 +538,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54016",
     "Site Name": "HUDSON",
-    "GeoLoc": "PK3206"
+    "GeoLoc": "PK3206",
+    "lat": 44.978196,
+    "lon": -92.75713,
+    "geoApprox": false
   },
   {
     "CLLI": "HBTSWI11",
@@ -414,7 +550,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53033",
     "Site Name": "HUBERTUS",
-    "GeoLoc": "PG1506"
+    "GeoLoc": "PG1506",
+    "lat": 43.236517,
+    "lon": -88.211309,
+    "geoApprox": false
   },
   {
     "CLLI": "GNVLWI12",
@@ -423,7 +562,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54942",
     "Site Name": "GREENVILLE",
-    "GeoLoc": "PP0107"
+    "GeoLoc": "PP0107",
+    "lat": 44.299238,
+    "lon": -88.534931,
+    "geoApprox": false
   },
   {
     "CLLI": "GNCYWI12",
@@ -432,7 +574,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53128",
     "Site Name": "GENOA CITY",
-    "GeoLoc": "PV1213"
+    "GeoLoc": "PV1213",
+    "lat": 42.496488,
+    "lon": -88.329783,
+    "geoApprox": false
   },
   {
     "CLLI": "GNBYWIUG",
@@ -441,7 +586,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54311",
     "Site Name": "GREEN BAY HUTH - UW",
-    "GeoLoc": "PN0206"
+    "GeoLoc": "PN0206",
+    "lat": 44.531745,
+    "lon": -87.931645,
+    "geoApprox": false
   },
   {
     "CLLI": "GNBYWIAT",
@@ -450,7 +598,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54303",
     "Site Name": "GREEN BAY (MAIN)",
-    "GeoLoc": "PN5106"
+    "GeoLoc": "PN5106",
+    "lat": 44.53921,
+    "lon": -88.056351,
+    "geoApprox": false
   },
   {
     "CLLI": "GNBYWI13",
@@ -459,7 +610,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54303",
     "Site Name": "GREEN BAY CARDINAL LN",
-    "GeoLoc": "PN0204"
+    "GeoLoc": "PN0204",
+    "lat": 44.594385,
+    "lon": -88.083316,
+    "geoApprox": false
   },
   {
     "CLLI": "GNBYWI12",
@@ -468,7 +622,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54302",
     "Site Name": "GREEN BAY HUTH",
-    "GeoLoc": "PN0205"
+    "GeoLoc": "PN0205",
+    "lat": 44.501363,
+    "lon": -87.974262,
+    "geoApprox": false
   },
   {
     "CLLI": "GNBYWI11",
@@ -477,7 +634,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54304",
     "Site Name": "GREEN BAY RIDGE",
-    "GeoLoc": "PN0208"
+    "GeoLoc": "PN0208",
+    "lat": 44.519364,
+    "lon": -88.05266,
+    "geoApprox": false
   },
   {
     "CLLI": "GNBYWI01",
@@ -486,7 +646,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54301",
     "Site Name": "GREEN BAY MAIN/JEFFERSON",
-    "GeoLoc": "PN0207"
+    "GeoLoc": "PN0207",
+    "lat": 44.51196,
+    "lon": -88.014143,
+    "geoApprox": false
   },
   {
     "CLLI": "FTATWI11",
@@ -495,7 +658,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53538",
     "Site Name": "FORT ATKINSON",
-    "GeoLoc": "PV3106"
+    "GeoLoc": "PV3106",
+    "lat": 42.926925,
+    "lon": -88.834565,
+    "geoApprox": false
   },
   {
     "CLLI": "FDULWI01",
@@ -504,7 +670,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54935",
     "Site Name": "FOND DU LAC",
-    "GeoLoc": "PL0106"
+    "GeoLoc": "PL0106",
+    "lat": 43.778796,
+    "lon": -88.444616,
+    "geoApprox": false
   },
   {
     "CLLI": "EVVLWI11",
@@ -513,7 +682,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53536",
     "Site Name": "EVANSVILLE",
-    "GeoLoc": "PV4107"
+    "GeoLoc": "PV4107",
+    "lat": 42.781165,
+    "lon": -89.299274,
+    "geoApprox": false
   },
   {
     "CLLI": "EUCLWIAT",
@@ -522,7 +694,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54701",
     "Site Name": "EAU CLAIRE POP",
-    "GeoLoc": "PV4107"
+    "GeoLoc": "PV4107",
+    "lat": 44.816174,
+    "lon": -91.499225,
+    "geoApprox": false
   },
   {
     "CLLI": "EUCLWI01",
@@ -531,7 +706,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54701",
     "Site Name": "EAU CLAIRE",
-    "GeoLoc": "WI3760"
+    "GeoLoc": "WI3760",
+    "lat": 44.811777,
+    "lon": -91.497295,
+    "geoApprox": false
   },
   {
     "CLLI": "ELWOWI11",
@@ -540,7 +718,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54011",
     "Site Name": "ELLSWORTH",
-    "GeoLoc": "PK0106"
+    "GeoLoc": "PK0106",
+    "lat": 44.733043,
+    "lon": -92.483378,
+    "geoApprox": false
   },
   {
     "CLLI": "DLVNWI11",
@@ -549,7 +730,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53115",
     "Site Name": "DELAVAN",
-    "GeoLoc": "PK3106"
+    "GeoLoc": "PK3106",
+    "lat": 42.632718,
+    "lon": -88.645424,
+    "geoApprox": false
   },
   {
     "CLLI": "DEPRWI11",
@@ -558,7 +742,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54115",
     "Site Name": "DE PERE",
-    "GeoLoc": "PV1209"
+    "GeoLoc": "PV1209",
+    "lat": 44.448655,
+    "lon": -88.057951,
+    "geoApprox": false
   },
   {
     "CLLI": "COVYWIAT",
@@ -567,7 +754,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54667",
     "Site Name": "COON VALLEY MICROWAVE",
-    "GeoLoc": "PN0210"
+    "GeoLoc": "PN0210",
+    "lat": 43.702439,
+    "lon": -91.016995,
+    "geoApprox": true
   },
   {
     "CLLI": "CLMBWI11",
@@ -576,7 +766,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53925",
     "Site Name": "COLUMBUS",
-    "GeoLoc": "PL1307"
+    "GeoLoc": "PL1307",
+    "lat": 43.338847,
+    "lon": -89.016076,
+    "geoApprox": false
   },
   {
     "CLLI": "CLDNWI14",
@@ -585,7 +778,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53108",
     "Site Name": "CALEDONIA",
-    "GeoLoc": "PX0410"
+    "GeoLoc": "PX0410",
+    "lat": 42.807919,
+    "lon": -87.970088,
+    "geoApprox": false
   },
   {
     "CLLI": "CHFLWI11",
@@ -594,7 +790,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54729",
     "Site Name": "CHIPPEWA FALLS",
-    "GeoLoc": "PK0111"
+    "GeoLoc": "PK0111",
+    "lat": 44.938095,
+    "lon": -91.393295,
+    "geoApprox": false
   },
   {
     "CLLI": "CDBGWI15",
@@ -603,7 +802,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53012",
     "Site Name": "CEDARBURG",
-    "GeoLoc": "PG1107"
+    "GeoLoc": "PG1107",
+    "lat": 43.295591,
+    "lon": -87.988694,
+    "geoApprox": false
   },
   {
     "CLLI": "BVDMWI01",
@@ -612,7 +814,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53916",
     "Site Name": "BEAVER DAM",
-    "GeoLoc": "PL1106"
+    "GeoLoc": "PL1106",
+    "lat": 43.45836,
+    "lon": -88.837072,
+    "geoApprox": false
   },
   {
     "CLLI": "BURLWI11",
@@ -621,7 +826,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53105",
     "Site Name": "BURLINGTON",
-    "GeoLoc": "PV1106"
+    "GeoLoc": "PV1106",
+    "lat": 42.678527,
+    "lon": -88.277786,
+    "geoApprox": false
   },
   {
     "CLLI": "BRFDWI11",
@@ -630,7 +838,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53005",
     "Site Name": "BROOKFIELD LAKES",
-    "GeoLoc": "PF0161"
+    "GeoLoc": "PF0161",
+    "lat": 43.037553,
+    "lon": -88.136838,
+    "geoApprox": false
   },
   {
     "CLLI": "BGBNWI11",
@@ -639,7 +850,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53103",
     "Site Name": "BIG BEND",
-    "GeoLoc": "PF1606"
+    "GeoLoc": "PF1606",
+    "lat": 42.887761,
+    "lon": -88.208767,
+    "geoApprox": false
   },
   {
     "CLLI": "BFTWWI11",
@@ -648,7 +862,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53186",
     "Site Name": "BROOKFIELD SWENSON RD",
-    "GeoLoc": "PF0157"
+    "GeoLoc": "PF0157",
+    "lat": 43.032384,
+    "lon": -88.173957,
+    "geoApprox": true
   },
   {
     "CLLI": "BELTWI01",
@@ -657,7 +874,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "53511",
     "Site Name": "BELOIT",
-    "GeoLoc": "PV0106"
+    "GeoLoc": "PV0106",
+    "lat": 42.500147,
+    "lon": -89.030819,
+    "geoApprox": false
   },
   {
     "CLLI": "APPLWIAG",
@@ -666,7 +886,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54914",
     "Site Name": "APPLETON POP (T)",
-    "GeoLoc": "PP0122"
+    "GeoLoc": "PP0122",
+    "lat": 44.258458,
+    "lon": -88.42463,
+    "geoApprox": false
   },
   {
     "CLLI": "APPLWI01",
@@ -675,7 +898,10 @@ const SITES = [
     "State": "WI",
     "ZIP": "54911",
     "Site Name": "APPLETON",
-    "GeoLoc": "PP0112"
+    "GeoLoc": "PP0112",
+    "lat": 44.262886,
+    "lon": -88.407603,
+    "geoApprox": false
   },
   {
     "CLLI": "ALGMWI11",
@@ -684,6 +910,9 @@ const SITES = [
     "State": "WI",
     "ZIP": "54201",
     "Site Name": "ALGOMA",
-    "GeoLoc": "PNS106"
+    "GeoLoc": "PNS106",
+    "lat": 44.610286,
+    "lon": -87.439888,
+    "geoApprox": false
   }
 ];
