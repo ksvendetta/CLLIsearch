@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CLLI Site Search</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-title" content="CLLI Search" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <style>
     :root {
       --bg: #0f172a;
@@ -399,7 +407,7 @@
 
       // Bump APP_VERSION on every change so the badge tells you which build you
       // are actually running (handy for spotting a stale browser cache).
-      const APP_VERSION = "1.0.1";
+      const APP_VERSION = "1.0.4";
       const APP_BUILD = "2026-06-15";
       document.getElementById("versionBadge").textContent =
         "v" + APP_VERSION + " · " + APP_BUILD;

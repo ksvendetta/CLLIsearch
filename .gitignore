@@ -11,6 +11,9 @@ _batch.csv
 # Local dev tooling (machine-specific paths)
 .claude/
 
+# Local-only icon preview page (not part of the deployed site)
+icon-preview.html
+
 # OS / editor
 .DS_Store
 Thumbs.db
